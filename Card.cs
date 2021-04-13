@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Bussen
+namespace ride_the_bus_calculator
 {
     class Card
     {
