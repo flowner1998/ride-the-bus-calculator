@@ -35,6 +35,21 @@ namespace ride_the_bus_calculator
             return this.Cards;
         }
 
+        public void Shuffle(ThreadSafeRandom random, int shuffleAmount, int leaveIntact)
+        {
+            while(shuffleAmount > 1)
+            {
+                int swapA = (random.Next() % (this.Cards.Count - leaveIntact)) + leaveIntact;
+                int swapB = (random.Next() % (this.Cards.Count - leaveIntact)) + leaveIntact;
+
+                Card swapCard = this.Cards[swapA];
+                this.Cards[swapA] = this.Cards[swapB];
+                this.Cards[swapB] = swapCard;
+
+                shuffleAmount--;
+            }
+        }
+
         public override string ToString()
         {
             string s = String.Join(
