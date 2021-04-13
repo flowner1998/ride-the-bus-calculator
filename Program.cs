@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Timers;
+using System.Diagnostics;
 
 namespace ride_the_bus_calculator
 {
@@ -22,6 +22,11 @@ namespace ride_the_bus_calculator
             // Make a list for the results
             results = new List<int>();
 
+            // Make a stopwatch
+            Stopwatch sw = new Stopwatch();
+
+            // Start the stopwatch
+            sw.Start();
             // Loop over the amount of tests
             for (int n = 0; n < parameters.TestSize; n++)
             {
@@ -30,7 +35,10 @@ namespace ride_the_bus_calculator
                 t.Start();
             }
 
-            PrintStats();
+            // Stop the stopwatch
+            sw.Stop();
+
+            PrintStats(results, sw);
         }
 
 
@@ -79,7 +87,7 @@ namespace ride_the_bus_calculator
             }
         }
 
-        static void PrintStats()
+        static void PrintStats(List<int> results, Stopwatch stopwatch)
         {
             Console.WriteLine("----------RESULTS----------");
             int min = 100000;
@@ -111,6 +119,7 @@ namespace ride_the_bus_calculator
             Console.WriteLine(
                 String.Join(
                     Environment.NewLine,
+                    $"Calculations took {stopwatch.ElapsedMilliseconds} ms",
                     $"Minimum amount of cards: {min}.",
                     $"Maximum amount of cards: {max}.",
                     $"Average amount of cards: {average}."
