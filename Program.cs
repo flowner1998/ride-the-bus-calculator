@@ -26,6 +26,7 @@ namespace ride_the_bus_calculator
             {
                 // Start a thread for every test
                 Thread t = new Thread(() => Program.Calculate(rnd, parameters));
+                t.Start();
             }
         }
 
