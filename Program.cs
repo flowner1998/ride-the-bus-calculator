@@ -9,7 +9,6 @@ namespace ride_the_bus_calculator
             Parameters parameters = new Parameters(7, 1000, 1000);
             parameters.SetParameters();
             Console.WriteLine(parameters);
-
         }
     }
 
@@ -86,6 +85,28 @@ namespace ride_the_bus_calculator
             $"Test size: {this.TestSize}"
             );
             return s;
+        }
+    }
+
+    public class ThreadSafeRandom
+    {
+        private static readonly Random _global = new Random();
+        [ThreadStatic] private static Random _local;
+
+        public int Next()
+        {
+            if (_local == null)
+            {
+                lock (_global)
+                {
+                    if (_local == null)
+                    {
+                        int seed = _global.Next();
+                        _local = new Random(seed);
+                    }
+                }
+            }
+            return _local.Next();
         }
     }
 }
