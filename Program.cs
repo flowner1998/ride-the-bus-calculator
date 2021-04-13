@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Timers;
 
 namespace ride_the_bus_calculator
 {
@@ -28,10 +29,13 @@ namespace ride_the_bus_calculator
                 Thread t = new Thread(() => Program.Calculate(rnd, parameters));
                 t.Start();
             }
+
+            PrintStats();
         }
 
 
-        static void Calculate(ThreadSafeRandom random, Parameters parameters){
+        static void Calculate(ThreadSafeRandom random, Parameters parameters)
+        {
             Deck deck = new Deck();
             deck.Shuffle(random, parameters.ShuffleAmount, 0);
 
@@ -75,7 +79,48 @@ namespace ride_the_bus_calculator
                 deck.setCards(currentDeck);
             }
         }
+
+        static void PrintStats()
+        {
+            Console.WriteLine("----------RESULTS----------");
+            int min = 100000;
+            int max = 0;
+            int sum = 0;
+            int average = 0;
+
+            foreach (int i in results)
+            {
+                // Check the highest value
+                if ( i > max )
+                {
+                    max = i;
+                }
+
+                // Check the lowest value
+                if (i < min)
+                {
+                    min = i;
+                }
+
+                // Sum the amount of the list
+                sum += i;
+            }
+
+            // Calculate the average
+            average = sum / results.Count;
+
+            Console.WriteLine(
+                String.Join(
+                    Environment.NewLine,
+                    $"Minimum amount of cards: {min}.",
+                    $"Maximum amount of cards: {max}.",
+                    $"Average amount of cards: {average}."
+                )
+            );
+
+        }
     }
+
 
     public class Parameters
     {
