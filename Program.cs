@@ -40,7 +40,7 @@ namespace ride_the_bus_calculator
             deck.Shuffle(random, parameters.ShuffleAmount, 0);
 
             bool matched = false;
-            int carry = 0;
+            int cardsPlayed = 0;
             while( !matched)
             {
                 // Shuffle the deck
@@ -56,17 +56,16 @@ namespace ride_the_bus_calculator
                     int tablecard = handcard - 1;
                     // Check if the card in the hand matches the card on the table on the last position (we changed the order for simplicity)
                     matched = ( currentDeck[tablecard].GetValue() == currentDeck[handcard].GetValue() );
+                    cardsPlayed++;
                     
                     if ( matched )
                     {
                         // Add the amount of cards played to the result list. This is done by 
-                        results.Add( i + carry );
+                        results.Add(cardsPlayed);
                         return;
                     }
                 }
 
-                // Couldn't find a match in this deck. Carry the amount of cards played.
-                carry = carry + currentDeck.Count - parameters.BusSize;
 
                 // Set the last table card to the new table card and swap it with the hand card.
                 Card currentLastCard = currentDeck[parameters.BusSize - 1];
