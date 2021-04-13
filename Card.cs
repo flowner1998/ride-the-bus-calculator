@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace ride_the_bus_calculator
 {
     class Card
