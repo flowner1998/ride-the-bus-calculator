@@ -9,3 +9,12 @@ To support these claims I was eager to test this out with a program. Unfortunate
 That's why I gave C# a try for this project!
 
 # Results
+-----PARAMETERS-----
+Bus size: 7
+Shuffle amount: 1000
+Test size: 1000000
+----------RESULTS----------
+Calculations took 106232 ms
+Minimum amount of cards: 1.
+Maximum amount of cards: 209.
+Average amount of cards: 16.
