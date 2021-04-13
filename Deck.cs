@@ -17,6 +17,11 @@ namespace ride_the_bus_calculator
             }
         }
 
+        public void setCards(List<Card> cards)
+        {
+            this.Cards = cards;
+        }
+
         private List<Card> CardsForSuit(SuitEnum suit)
         {
             List<Card> fullSuit = new List<Card>();
