@@ -9,6 +9,7 @@ To support these claims I was eager to test this out with a program. Unfortunate
 That's why I gave C# a try for this project!
 
 # Results
+<pre>
 -----PARAMETERS-----
 Bus size: 7
 Shuffle amount: 1000
@@ -18,3 +19,4 @@ Calculations took 106232 ms
 Minimum amount of cards: 1.
 Maximum amount of cards: 209.
 Average amount of cards: 16.
+<pre>
